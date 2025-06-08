@@ -28,7 +28,7 @@ struct ProfileView: View {
                         
                         HStack(spacing: 8){
                             UserStateView(name: "Posts",
-                                      value: "3")
+                                      value: "12")
                             
                             UserStateView(name: "Followers",
                                       value: "9.5K")
@@ -65,6 +65,8 @@ struct ProfileView: View {
                     }
 
                     Divider()
+                        .padding(.bottom, 4)
+                        .padding(.horizontal, 8)
                 }
                 
                 LazyVGrid(columns: gridItems, spacing: 4) {
