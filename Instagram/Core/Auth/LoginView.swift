@@ -25,7 +25,7 @@ struct LoginView: View {
                 VStack {
                     TextField("Enter your email", text: $email)
                         .autocorrectionDisabled()
-                        .autocapitalization(.none)
+                        .textInputAutocapitalization(.never)
                         .font(.subheadline)
                         .padding(12)
                         .background(Color(.systemGray6))
@@ -97,7 +97,8 @@ struct LoginView: View {
                 Divider()
                 
                 NavigationLink {
-                    Text("Sign up!")
+                    AddEmailView()
+                        .navigationBarBackButtonHidden()
                 } label: {
                     HStack(spacing: 10){
                         Text("Don't have an account yet?")
