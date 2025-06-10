@@ -29,6 +29,7 @@ struct LoginView: View {
                         .modifier(IGTextFieldModifier())
                     
                     SecureField("Password", text: $password)
+                        .font(.subheadline)
                         .modifier(IGTextFieldModifier())
                 }
                                 
@@ -49,14 +50,7 @@ struct LoginView: View {
                     
                 } label: {
                     Text("Log In")
-                        .font(.subheadline)
-                        .fontWeight(.bold)
-                        .foregroundStyle(.white)
-                        .padding()
-                        .frame(maxWidth: .infinity)
-                        .background(.blue)
-                        .clipShape(RoundedRectangle(cornerRadius: 10))
-                        .padding(.horizontal, 24)
+                        .modifier(CustomButtonModifier())
                 }
                
                 HStack {

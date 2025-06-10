@@ -1,6 +1,6 @@
 //
-//  TextCustomViewModifier.swift
-//  Instagram
+//  ButtonCustomViewModifier.swift
+//
 //
 //  Created by Aya on 09/06/2025.
 //
@@ -9,7 +9,18 @@ import SwiftUI
 
 struct TextCustomViewModifier: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 20) {
+            Button("Next") {
+                print("Moves next")
+            }
+            .modifier(CustomButtonModifier())
+                        
+            Button("Previous") {
+                print("Moves back")
+            }
+            .modifier(CustomButtonModifier())
+        }
+        .padding(.horizontal)
     }
 }
 

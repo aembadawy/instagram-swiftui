@@ -29,18 +29,11 @@ struct AddEmailView: View {
                 .textInputAutocapitalization(.never)
                 .modifier(IGTextFieldModifier())
             
-            Button {
-                print("Add email button tapped")
+            NavigationLink {
+                AddUserNameView()
             } label: {
                 Text("Next")
-                    .foregroundStyle(.white)
-                    .font(.subheadline)
-                    .fontWeight(.bold)
-                    .padding()
-                    .frame(maxWidth: .infinity)
-                    .background(.blue)
-                    .cornerRadius(10)
-                    .padding(.horizontal, 24)
+                    .modifier(CustomButtonModifier())
             }
 
             Spacer()
