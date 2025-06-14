@@ -8,23 +8,25 @@
 import SwiftUI
 
 struct FeedItemView: View {
+    let post: Post
+    
     var body: some View {
         VStack {
             HStack {
-                Image("images")
+                Image(post.user?.profileImageUrl ?? "avatar")
                     .resizable()
                     .scaledToFill()
                     .frame(width: 55, height: 55)
                     .clipShape(Circle())
                 
-                Text("Jean-Michel Basquiat")
+                Text(post.user?.username ?? "")
                     .font(.footnote)
                     .fontWeight(.semibold)
                 Spacer()
             }
             .padding(.leading, 8)
             
-            Image("images-8")
+            Image(post.imageURL)
                 .resizable()
                 .frame(height: 400)
                 .clipShape(Rectangle())
@@ -56,7 +58,7 @@ struct FeedItemView: View {
             .foregroundStyle(.black)
             .fontWeight(.bold)
             
-            Text("3.3K Likes")
+            Text("\(post.likes) Likes")
                 .font(.footnote)
                 .fontWeight(.semibold)
                 .frame(maxWidth: .infinity, alignment: .leading)
@@ -64,15 +66,15 @@ struct FeedItemView: View {
                 .padding([.top, .bottom], 2)
             
             HStack {
-                Text("Jean-Michel Basquiat ")
+                Text("\(post.user?.username ?? "") ")
                     .fontWeight(.semibold) +
-                Text("The more I paint the more I like everything.")
+                Text(post.caption)
                 Spacer()
             }
             .font(.footnote)
             .padding(.leading, 8)
             
-            Text("3h ago")
+            Text("\(post.timestamp)")
                 .font(.footnote)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .padding(.leading, 9)
@@ -84,5 +86,5 @@ struct FeedItemView: View {
 }
 
 #Preview {
-    FeedItemView()
+    FeedItemView(post: Post.MOCK_POSTS[0])
 }
