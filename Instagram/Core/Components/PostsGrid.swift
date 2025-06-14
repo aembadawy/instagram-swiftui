@@ -8,11 +8,29 @@
 import SwiftUI
 
 struct PostsGrid: View {
+    var posts: [Post]
+    
+    private let gridItems: [GridItem] = [
+        .init(.flexible(), spacing: 2),
+        .init(.flexible(), spacing: 2),
+        .init(.flexible(), spacing: 2)
+    ]
+    
+    let imageDimention: CGFloat = (UIScreen.main.bounds.width / 3) - 2
+
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        LazyVGrid(columns: gridItems, spacing: 4) {
+            ForEach(posts) { post in
+                Image(post.imageURL)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(width: imageDimention, height: imageDimention)
+                    .clipped()
+            }
+        }
     }
 }
 
 #Preview {
-    PostsGrid()
+    PostsGrid(posts: Post.MOCK_POSTS)
 }
