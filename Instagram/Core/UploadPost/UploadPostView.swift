@@ -6,16 +6,23 @@
 //
 
 import SwiftUI
+import PhotosUI
 
 struct UploadPostView: View {
     
-    @State var caption = ""
+    @State private var caption = ""
+    @State private var isPickerPresented = false
+    @StateObject private var viewModel = UploadPostViewModel()
+    @Binding var tabIndex: Int
     
     var body: some View {
         VStack {
             HStack {
                 Button {
-                    print("Cancel")
+                    self.caption = ""
+                    self.viewModel.selectedImage = nil
+                    self.viewModel.postImage = nil
+                    self.tabIndex = 0
                 } label: {
                     Text("Cancel")
                 }
@@ -24,7 +31,6 @@ struct UploadPostView: View {
                 
                 Text("Upload Post")
                     .fontWeight(.semibold)
-                
                 
                 Spacer()
                 
@@ -38,9 +44,16 @@ struct UploadPostView: View {
             .padding(.horizontal)
             
             HStack(spacing: 8){
-                Image("images-8")
-                    .resizable()
-                    .frame(width: 150, height: 150)
+                if let image = viewModel.postImage {
+                    image
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: 150, height: 150)
+                        .clipped()
+                } else {
+                    ProgressView()
+                }
+                
                 
                 TextField(
                     "Enter your caption...",
@@ -51,9 +64,13 @@ struct UploadPostView: View {
             
             Spacer()
         }
+        .onAppear {
+            isPickerPresented.toggle()
+        }
+        .photosPicker(isPresented: $isPickerPresented, selection: $viewModel.selectedImage)
     }
 }
 
 #Preview {
-    UploadPostView()
+    UploadPostView(tabIndex: .constant(0))
 }
