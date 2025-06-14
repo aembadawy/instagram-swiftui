@@ -12,8 +12,8 @@ struct FeedView: View {
         NavigationStack {
             ScrollView {
                 LazyVStack(spacing: 24) {
-                    ForEach(0...12, id: \.self) { post in
-                        FeedItemView()
+                    ForEach(Post.MOCK_POSTS) { post in
+                        FeedItemView(post: post)
                     }
                 }
             }
