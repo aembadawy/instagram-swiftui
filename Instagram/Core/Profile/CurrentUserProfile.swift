@@ -8,8 +8,34 @@
 import SwiftUI
 
 struct CurrentUserProfile: View {
+    private let gridItems: [GridItem] = [
+        .init(.flexible(), spacing: 2),
+        .init(.flexible(), spacing: 2),
+        .init(.flexible(), spacing: 2)
+    ]
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            ScrollView {
+                ProfileHeaderView(user: User.MOCK_USERS[0])
+                
+                PostsGrid(posts: Post.MOCK_POSTS)
+            }
+            .scrollIndicators(.hidden)
+            .navigationTitle("Profile")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        
+                    } label: {
+                        Image(systemName: "line.3.horizontal")
+                            .foregroundStyle(.black)
+                    }
+
+                }
+            }
+        }
     }
 }
 
